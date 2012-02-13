@@ -660,6 +660,9 @@ namespace NLog
                 yield return Path.ChangeExtension(cf, ".nlog");
             }
 
+            string configurationFileName = Path.GetFileName(cf);
+            yield return Path.Combine(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath, "NLog.config");
+
             // get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache)
